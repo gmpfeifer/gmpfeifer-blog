@@ -102,11 +102,13 @@ systemctl restart pihole-FTL
 
 Dann Änderungen im `etc/pihole/pihole.toml` hier im Abschnitt `[webserver]` bei der Variable `domain`:
 ![alt text](<../media/Pasted image 20250218231609.png>)
+
 Und dann auch unter `[webserver.tls]` bei der Variable `cert`:
 ![alt text](<../media/Pasted image 20250218223635.png>)
 Speichern und schließen
 
-Dann wollte ich noch, dass da ganze auch dauerhaft funktioniert. Mal sehen ob diese crontab Lösung auf Dauer robust genug ist dafür:
+Dann wollte ich noch, dass da ganze auch dauerhaft funktioniert. Mal sehen ob diese crontab Lösung auf Dauer robust genug ist dafür.
+Folgendes in /etc/crontab eingefügt (bzw. erste Zeile war davor schon da):
 
 ```bash
 0  5	1 * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo certbot renew -q
