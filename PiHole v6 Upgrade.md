@@ -62,8 +62,8 @@ Damit das mit dem neuen integrierten Webserver in PiHole v6 wieder funktioniert 
 
 Am besten schaut man sich das neue zentrale Config File von PiHole an unter `/etc/pihole/pihole.toml` und man sieht was man machen kann um seine eigenen Zertifikate zu verwenden.
 
-> [!locate] Speziell diesen Hinweis
-> ![[Pasted image 20250218235046.png]]
+**Speziell diesen Hinweis:**
+
 
 Certbot legt die Zertifikate hier ab:
 ```bash
