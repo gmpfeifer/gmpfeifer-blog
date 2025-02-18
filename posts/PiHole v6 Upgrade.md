@@ -1,9 +1,9 @@
 # Pihole v6 Release
 
 PiHole v6 wurde am 18. Februar 2025 nach einer ausgiebigen Beta Testphase offiziell released.
-Das offizielle Announcement kann hier nachgelesen werden: https://pi-hole.net/blog/2025/02/18/introducing-pi-hole-v6/#page-content
+Das offizielle Announcement kann hier nachgelesen werden: <https://pi-hole.net/blog/2025/02/18/introducing-pi-hole-v6/#page-content>
 
-# PiHole von v5 auf v6 upgraden
+## PiHole von v5 auf v6 upgraden
 
 > !!! DISCLAIMER: Das ist meine hastig dokumentierte Vorgehensweise. Hier können Fehler enthalten sein.
 
@@ -35,22 +35,24 @@ sudo pihole -up
 
 _Notiz: Vielleicht sollte ich beim zweiten PiHole einmal vor dem Upgrade die Blocklisten durchgehen und kontrollieren ob es welche gibt die `inaccessible during last run` sind und diese entfernen - dann erst upgraden. Ob es hilft wird sich zeigen._
 
-# Nacharbeiten
+## Nacharbeiten
 
-## SSL Cert von Certbot wieder einspielen
+### SSL Cert von Certbot wieder einspielen
 
-### Vorgeschichte zu meinem Setup mit PiHole v5
+#### Vorgeschichte zu meinem Setup mit PiHole v5
 
 Der neue integrierte Webserver von PiHole v6 hat nun standardmäßig HTTPS Support und ein eigenes SSL Cert. Das ganze Zertifikat kann man natürlich austauschen, wenn man möchte. Jedoch braucht der neue Webserver ein etwas anderes Format.
 
-_Für meine Docker Services verwende ich den traefik Reverse Proxy der mir über eine DNS-01 Challenge bei Cloudflare die SSL-Zertifikate von Lets Encrypt holt und aktuell hält. (Hier ein Video dazu: [Title Unavailable \| Site Unreachable](https://www.youtube.com/watch?v=-hfejNXqOzA&t=23s)). Für Pi-Hole mache ich aber was anderes._
+_Für meine Docker Services verwende ich den traefik Reverse Proxy der mir über eine DNS-01 Challenge bei Cloudflare die SSL-Zertifikate von Lets Encrypt holt und aktuell hält. Hier ein Video dazu: <https://www.youtube.com/watch?v=-hfejNXqOzA&t=23s>. Für Pi-Hole mache ich aber was anderes.
 
 Für meine pi-hole Instanzen wird das ganze mit certbot automatisiert. Vor dem Upgrade auf v6 war es mit lighttpd als Webserver nicht sonderlich kompliziert. Im groben so:
 
 > **Pihole v5 certbot setup Vorgang:**
 >
 > Genaue Details den Quellen entnehmen:
-> https://certbot.eff.org/instructions?ws=other&os=pip&tab=wildcard > https://certbot-dns-cloudflare.readthedocs.io/en/stable/
+>
+> - <https://certbot.eff.org/instructions?ws=other&os=pip&tab=wildcard>
+> - <https://certbot-dns-cloudflare.readthedocs.io/en/stable/>
 >
 > Commands:
 >
@@ -72,7 +74,7 @@ Für meine pi-hole Instanzen wird das ganze mit certbot automatisiert. Vor dem U
 > echo "0 0,12 * * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo certbot renew -q" | sudo tee -a /etc/crontab > /dev/null
 > ```
 
-### Anpassungen für PiHole v6
+#### Anpassungen für PiHole v6
 
 Damit das mit dem neuen integrierten Webserver in PiHole v6 wieder funktioniert mussten einige Anpassungen gemacht werden.
 
@@ -111,7 +113,7 @@ Dann wollte ich noch, dass da ganze auch dauerhaft funktioniert. Mal sehen ob di
 Folgendes in /etc/crontab eingefügt (bzw. erste Zeile war davor schon da):
 
 ```bash
-0  5	1 * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo certbot renew -q
-15 5	1 * * cat /etc/letsencrypt/live/raspi-vie.gmpfeifer.at/fullchain.pem /etc/letsencrypt/live/raspi-vie.gmpfeifer.at/privkey.pem > /etc/pihole/server.pem
-20 5	1 * * systemctl restart pihole-FTL
+0  5 1 * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo certbot renew -q
+15 5 1 * * cat /etc/letsencrypt/live/raspi-vie.gmpfeifer.at/fullchain.pem /etc/letsencrypt/live/raspi-vie.gmpfeifer.at/privkey.pem > /etc/pihole/server.pem
+20 5 1 * * systemctl restart pihole-FTL
 ```
