@@ -33,6 +33,7 @@ Der neue integrierte Webserver von PiHole v6 hat nun standardmäßig HTTPS Suppo
 
 Für meine pi-hole Instanzen wird das ganze mit certbot automatisiert. Vor dem Upgrade auf v6 war es mit lighttpd als Webserver nicht sonderlich kompliziert. Im groben so:
 > **Pihole v5 certbot setup Vorgang:**
+> 
 > Genaue Details den Quellen entnehmen:
 > https://certbot.eff.org/instructions?ws=other&os=pip&tab=wildcard
 > https://certbot-dns-cloudflare.readthedocs.io/en/stable/
