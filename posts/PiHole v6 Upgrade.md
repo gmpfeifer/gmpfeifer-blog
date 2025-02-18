@@ -79,7 +79,7 @@ Damit das mit dem neuen integrierten Webserver in PiHole v6 wieder funktioniert 
 Am besten schaut man sich das neue zentrale Config File von PiHole an unter `/etc/pihole/pihole.toml` und man sieht was man machen kann um seine eigenen Zertifikate zu verwenden.
 
 **Speziell diesen Hinweis:**
-![alt text](<Pasted image 20250218235046.png>)
+![alt text](<../media/Pasted image 20250218235046.png>)
 
 Certbot legt die Zertifikate hier ab:
 
@@ -101,9 +101,9 @@ systemctl restart pihole-FTL
 ```
 
 Dann Änderungen im `etc/pihole/pihole.toml` hier im Abschnitt `[webserver]` bei der Variable `domain`:
-![alt text](<Pasted image 20250218231609.png>)
+![alt text](<../media/Pasted image 20250218231609.png>)
 Und dann auch unter `[webserver.tls]` bei der Variable `cert`:
-![alt text](<Pasted image 20250218223635.png>)
+![alt text](<../media/Pasted image 20250218223635.png>)
 Speichern und schließen
 
 Dann wollte ich noch, dass da ganze auch dauerhaft funktioniert. Mal sehen ob diese crontab Lösung auf Dauer robust genug ist dafür:
