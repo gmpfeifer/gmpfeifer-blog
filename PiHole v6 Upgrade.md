@@ -32,7 +32,7 @@ Der neue integrierte Webserver von PiHole v6 hat nun standardmäßig HTTPS Suppo
 *Für meine Docker Services verwende ich den traefik Reverse Proxy der mir über eine DNS-01 Challenge bei Cloudflare die SSL-Zertifikate von Lets Encrypt holt und aktuell hält. (Hier ein Video dazu: [Title Unavailable \| Site Unreachable](https://www.youtube.com/watch?v=-hfejNXqOzA&t=23s)). Für Pi-Hole mache ich aber was anderes.*
 
 Für meine pi-hole Instanzen wird das ganze mit certbot automatisiert. Vor dem Upgrade auf v6 war es mit lighttpd als Webserver nicht sonderlich kompliziert. Im groben so:
-> [!Pihole v5 certbot setup Vorgang]
+> **Pihole v5 certbot setup Vorgang:**
 > Genaue Details den Quellen entnehmen:
 > https://certbot.eff.org/instructions?ws=other&os=pip&tab=wildcard
 > https://certbot-dns-cloudflare.readthedocs.io/en/stable/
